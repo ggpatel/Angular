@@ -1,0 +1,19 @@
+<head>
+    <h2>project </h2>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+        <tr *ngFor="let item of projects">
+            <td>{{item.id}}</td>
+            <td><label *ngIf="item.id>1" (click)="alertFunction(item.name)">{{item.name}}</label></td>
+        </tr>
+
+        
+
+    </table>
+</body>

@@ -1,0 +1,19 @@
+<p>customerview works!</p>
+<div>
+    <span>id</span>
+    <label>{{customer?.id | percent}}</label><br /><br />
+    <span>name</span>
+    <label>{{customer?.name | lowercase}}</label><br /><br />
+    <span>price</span>
+    <label>{{customer?.price | currency:"EUR"}}</label><br /><br />
+    <span>pay</span>
+    <label>{{customer?.pay | uppercase}}</label><br /><br />
+    <span>pay</span>
+    <label>{{'january'| slice:3:8 | uppercase}}</label><br /><br />
+    <span>pay</span>
+    <label>{{'01/15/2023'| date:'d/M/y' | uppercase}}</label><br /><br />
+    <span>pay</span>
+    <label>{{'january'| slice:3:8 | uppercase}}</label><br /><br />
+    <span>pay</span>
+    <label>{{133426-781 | number : '3.4-4' }}</label>
+</div>

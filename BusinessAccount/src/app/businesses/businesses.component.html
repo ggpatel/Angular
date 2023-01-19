@@ -1,0 +1,46 @@
+<p>businesses works!</p>
+<a href="javascript:void(0)" (click)="AddBusiness()">AddBusiness</a>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>RentPrice</th>
+        <th>Description</th>
+        <th>StartDate</th>
+        <th>Action </th>
+    </tr>
+    <tr *ngFor="let product of BusinessAccounts">
+        <td>{{product.Id |percent}}</td>
+        <td>{{product.Name | uppercase}}</td>
+        <td>{{product.RentPrice}}</td>
+        <td><label *ngIf="product.Id>1">{{product.Description}}</label></td>
+        <td>{{product.StartDate | date : "dd/MM/yy"}}</td>
+        <td><a [routerLink]="['/BusinessView', product.Id]">view</a>
+            <a href="javascript:void(0)" (click)="deleteBusiness(product.Id)">Delete</a>
+        </td>
+    <tr style="text-align:center" *ngIf="BusinessAccounts.length==0">
+        <td colspan=6> no Recordes found</td>
+    </tr>
+
+
+</table>
+
+<br /><br />
+<form [formGroup]="BusinessForm" (ngSubmit)="onSubmit()" id="formBusiness">
+
+    <div class="row">
+        <div class="col-md-3">
+            <span>Id</span>
+            <input id="Id" type="text" formControlName="Id" /><br /><br />
+            <span>Name:</span>
+            <input id="Name" type="text" formControlName="Name" /><br /><br />
+            <span>RentPrice:</span>
+            <input id="RentPrice" type="text" formControlName="RentPrice" /><br /><br />
+            <span>Description:</span>
+            <input id="Description" type="text" formControlName="Description"><br /><br />
+        </div>
+    </div>
+    <button class="button" type="submit">Save</button>
+    <button class="button" type="button" (click)="cancelBusiness()">Cancel</button>
+</form>
+<button (click)="clearAll()"> clear All!</button>

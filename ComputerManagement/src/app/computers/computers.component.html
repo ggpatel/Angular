@@ -1,0 +1,29 @@
+<p>computers works!</p>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>DiscSize</th>
+        <th>RamSize</th>
+        <th>CompanyName</th>
+        <th>PurchaseDate</th>
+        <th>Action</th>
+    </tr>
+    <tr *ngFor="let item of ComputerManagements">
+        <td>{{item.Id}}</td>
+        <td>{{item.DiscSize}}</td>
+        <td>{{item.RamSize}}</td>
+        <td><label *ngIf="item.Id>1">{{item.CompanyName | uppercase}}</label></td>
+        <td>{{item.PurchaseDate | date : "dd/MM/yy"}}</td>
+        <td><a [routerLink]="['/ComputerView',item.Id]">view</a>
+            <a href="javascript:void(0)" (click)="deleteCustomer(item.Id)"> Delete</a>;
+        </td>
+    </tr>
+    <tr style="text-align:center;" *ngIf="ComputerManagements.length==0">
+        <td colspan="6">no recordes found</td>
+    </tr>
+
+</table>
+
+
+<button (click)="clearAll()">click me!</button>

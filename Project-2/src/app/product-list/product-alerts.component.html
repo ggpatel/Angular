@@ -1,0 +1,22 @@
+<head>
+    <h2>product list</h2>
+</head>
+
+<body>
+
+    <table class="table1">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+        </tr>
+        <tr *ngFor="let product of product list">
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.price}}</td>
+            <td><label *ngIf="product.price > 10">{{product.description}}</label></td>
+        </tr>
+    </table>
+    <button (click)="alertFunction()"> Click Me!</button>
+</body>

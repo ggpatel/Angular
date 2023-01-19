@@ -1,0 +1,33 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <p>customers works!</p>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>price</th>
+            <th>Action</th>
+        </tr>
+        <tr *ngFor="let item of CustomerServices">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td><label *ngIf="item.id>1">{{item.price}}</label></td>
+            <td><a [routerLink]="['/customerview',item.id]">view></a>&nbsp;&nbsp;
+                <a href="javascript:void(0);" (click)="deleteCustomer(item.id)">Delete</a>
+            </td>
+        </tr>
+        <tr style="text-align:center;" *ngIf="CustomerServices.length==0">
+            <td colspan="4">no records found</td>
+        </tr>
+    </table>
+    <br /><br />
+    <button (click)="clearAll()">clear All</button>
+
+</body>
+
+</html>
