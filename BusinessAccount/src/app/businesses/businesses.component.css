@@ -10,3 +10,9 @@ th {
 td {
     border: 1px solid black;
 }
+
+a {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}

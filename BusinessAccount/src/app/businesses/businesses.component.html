@@ -15,8 +15,10 @@
         <td>{{product.RentPrice}}</td>
         <td><label *ngIf="product.Id>1">{{product.Description}}</label></td>
         <td>{{product.StartDate | date : "dd/MM/yy"}}</td>
-        <td><a [routerLink]="['/BusinessView', product.Id]">view</a>
-            <a href="javascript:void(0)" (click)="deleteBusiness(product.Id)">Delete</a>
+        <td><a [routerLink]="['/BusinessView', product.Id]">view</a> &nbsp;&nbsp;
+            <a (click)="EditBusiness(product.Id)">Edit</a> &nbsp;&nbsp;
+            <a (click)="deleteBusiness(product.Id)">Delete</a>
+
         </td>
     <tr style="text-align:center" *ngIf="BusinessAccounts.length==0">
         <td colspan=6> no Recordes found</td>
@@ -38,6 +40,8 @@
             <input id="RentPrice" type="text" formControlName="RentPrice" /><br /><br />
             <span>Description:</span>
             <input id="Description" type="text" formControlName="Description"><br /><br />
+            <span>StartDate</span>
+            <input id="StartDate" type=text formControlName="StartDate" />
         </div>
     </div>
     <button class="button" type="submit">Save</button>
