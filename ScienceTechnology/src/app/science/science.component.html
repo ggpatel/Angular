@@ -1,0 +1,55 @@
+<p>science works!</p>
+<a href="javascript:void(0);" (click)="AddScience()">AddScience</a>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Details</th>
+        <th>StartDate</th>
+        <th>Action</th>
+
+    </tr>
+    <tr *ngFor="let product of ScienceTechnologies">
+        <td>{{product.Id}}</td>
+        <td>{{product.Name}}</td>
+        <td>{{product.Price}}</td>
+        <td><label *ngIf="product.Id>1">{{product.Details}} </label></td>
+        <td>{{product.StartDate | date:"dd/MM/yy"}}</td>
+        <td><a [routerLink]="['/ScienceView', product.Id]">view</a>&nbsp;&nbsp;
+            <a href="javascript:void(0);" (click)="deleteScience(product.Id)">Delete</a>
+        </td>
+    </tr>
+    <tr style="text-align:center" *ngIf="ScienceTechnologies.length==0">
+        <td colspan="6">No Recordes Found</td>
+    </tr>
+</table>
+<br /><br />
+<button (click)="clearAll()">clearAll</button>
+<form [formGroup]="ScienceForm" (ngSubmit)="onSubmit()" id="formScience">
+
+    <div class="row">
+        <div class="col-mb-3">
+
+            <span>Id:</span>
+            <input Id="Id" type="text" formControlName="Id" /><br /><br />
+            <span>Name:</span>
+            <input Id="Name" type="text" formControlName="Name" /><br /><br />
+            <span>Price:</span>
+            <input Id="Price" type="text" formControlName="Price" /><br /><br />
+            <span>Details:</span>
+            <input Id="Details" type="text" formControlName="Details" /><br /><br />
+            <span>StartDate:</span>
+            <input Id="StartDate" type="text" formControlName="StartDate" /><br /><br />
+            <span>Email:</span>
+            <input Id="Email" type="text" formControlName="Email" /><br /><br />
+
+        </div>
+
+    </div>
+
+
+    <button class="button" type="submit">save</button>
+    <button class="button" type="button" (click)="cancelScience()">Cancel</button>
+</form>
+<br /><br />
