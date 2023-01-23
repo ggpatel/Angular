@@ -1,0 +1,54 @@
+<p>product works!</p>
+<a href="Javascript:void(0);" (click)="AddProduct()">AddProduct</a>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Quntity</th>
+        <th>Price</th>
+        <th>Email</th>
+        <th>StartDate</th>
+        <th>Action</th>
+    </tr>
+    <tr *ngFor="let item of ProductManagements">
+        <td>{{item.Id}}</td>
+        <td>{{item.Name}}</td>
+        <td (click)="alertFunction(item.Name)">{{item.Quntity}}</td>
+        <td><label *ngIf="item.Id>1"></label> {{item.Price}}</td>
+        <td>{{item.Email}}</td>
+        <td>{{item.StartDate |date: "1/20/2023"}}</td>
+        <td><a [routerLink]="['/ProductView',item.Id]">View</a>&nbsp;&nbsp;
+            <a href="javascript:void(0);" (click)="EditProduct(item.Id)">Edit</a>&nbsp;&nbsp;
+            <a href="javascript:void(0);" (click)="deleteProduct(item.Id)">Delete</a>
+        </td>
+    </tr>
+    <tr style="text-align:center" *ngIf="ProductManagements.length==0">
+        <td colspan="7">No Recordes Found</td>
+    </tr>
+</table>
+<br /><br />
+
+<form [formGroup]="ProductForm" (ngSubmit)="onSubmit()" id="formProduct">
+    <div class="row">
+        <div class="col-md-3">
+            <span>Id</span>
+            <input id="Id" type="text" formControlName="Id" /><br /><br />
+            <span>Name</span>
+            <input id="Name" type="text" formControlName="Name"><br /><br />
+            <span>Quntity</span>
+            <input id="Quntity" type="text" formControlName="Quntity" /><br /><br />
+            <span>price</span>
+            <input id="Price" type="text" formControlName="Price" /><br /><br />
+            <span>Email</span>
+            <input id="Email" type="text" formControlName="Email" /><br /><br />
+            <span>StartDate</span>
+            <input id="StartDate" type="text" formControlName="StartDate" />
+        </div>
+    </div>
+    <button id="button" type="submit">Save</button>
+    <button id="button" type="button" (click)="CancelProduct()">Cancel</button>
+    <br /><br />
+</form>
+<br /><br />
+<button class="button" (click)="ClearAll()">ClearAll</button>

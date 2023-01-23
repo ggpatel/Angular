@@ -17,7 +17,9 @@
         <td><label *ngIf="product.Id>1">{{product.Details}} </label></td>
         <td>{{product.StartDate | date:"dd/MM/yy"}}</td>
         <td><a [routerLink]="['/ScienceView', product.Id]">view</a>&nbsp;&nbsp;
+            <a href="javascript:void(0);" (click)="EditScience(product.Id)">EditScience</a>&nbsp;&nbsp;
             <a href="javascript:void(0);" (click)="deleteScience(product.Id)">Delete</a>
+
         </td>
     </tr>
     <tr style="text-align:center" *ngIf="ScienceTechnologies.length==0">
