@@ -1,0 +1,19 @@
+<p>reserch works!</p>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Project</th>
+        <th>Place</th>
+        <th>Price</th>
+        <th>Date</th>
+        <th>Action</th>
+    </tr>
+    <tr *ngFor="let vaccine of ReserchDepartments">
+        <td>{{vaccine.Id}}</td>
+        <td>{{vaccine.Project}}</td>
+        <td (click)="alertFunction(vaccine.Project)">{{vaccine.Place}}</td>
+        <td><a *ngIf="vaccine.Id>1">{{vaccine.Price}}</a></td>
+        <td>{{vaccine.StartDate }}</td>
+
+    </tr>
+</table>

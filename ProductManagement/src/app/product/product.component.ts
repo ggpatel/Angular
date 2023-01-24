@@ -33,6 +33,10 @@ export class ProductComponent implements OnInit {
     if (formProduct) {
       formProduct.style.display = "none";
     }
+    this.ProductForm.reset();
+  }
+  ClearProduct() {
+    this.ProductForm.reset();
   }
 
   ProductForm = this.formBuilder.group({
@@ -95,6 +99,9 @@ export class ProductComponent implements OnInit {
     if (confirmation) {
       this.ProductManagements = this.ProductManagements.filter(function (item) { return item.Id != id; });
     }
+  }
+  SelectProduct(id: Number) {
+    this.ProductManagements = this.ProductManagements.filter(function (item) { return item.Id == id; })
   }
   ClearAll() {
     var confirmation = confirm("are you sure do you want to clear all this")

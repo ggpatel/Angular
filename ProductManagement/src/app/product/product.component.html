@@ -20,7 +20,8 @@
         <td>{{item.StartDate |date: "1/20/2023"}}</td>
         <td><a [routerLink]="['/ProductView',item.Id]">View</a>&nbsp;&nbsp;
             <a href="javascript:void(0);" (click)="EditProduct(item.Id)">Edit</a>&nbsp;&nbsp;
-            <a href="javascript:void(0);" (click)="deleteProduct(item.Id)">Delete</a>
+            <a href="javascript:void(0);" (click)="deleteProduct(item.Id)">Delete</a>&nbsp;&nbsp;
+            <a (click)="SelectProduct(item.Id)">Select</a>
         </td>
     </tr>
     <tr style="text-align:center" *ngIf="ProductManagements.length==0">
@@ -47,6 +48,7 @@
         </div>
     </div>
     <button id="button" type="submit">Save</button>
+    <button id="button" type="button" (cSlick)="ClearProduct()">Reset button</button>
     <button id="button" type="button" (click)="CancelProduct()">Cancel</button>
     <br /><br />
 </form>
