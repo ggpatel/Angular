@@ -1,4 +1,13 @@
 table,
 td {
-    border: 1 px solid black
+    border: 1px solid black
+}
+
+td,
+th {
+    text-align: center;
+}
+
+table {
+    width: 100%;
 }

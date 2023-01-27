@@ -22,4 +22,5 @@ export class ProductViewComponent implements OnInit {
     this.Product = this.Products.find(pm => pm.Id === ProductId);
   }
 
+
 }

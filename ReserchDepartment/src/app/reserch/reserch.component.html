@@ -1,4 +1,6 @@
 <p>reserch works!</p>
+<a href="javascript:void(0);" (click)="AddReserch()">AddReserch</a>
+
 <table>
     <tr>
         <th>Id</th>
@@ -8,12 +10,45 @@
         <th>Date</th>
         <th>Action</th>
     </tr>
+
     <tr *ngFor="let vaccine of ReserchDepartments">
         <td>{{vaccine.Id}}</td>
         <td>{{vaccine.Project}}</td>
         <td (click)="alertFunction(vaccine.Project)">{{vaccine.Place}}</td>
         <td><a *ngIf="vaccine.Id>1">{{vaccine.Price}}</a></td>
-        <td>{{vaccine.StartDate }}</td>
-
+        <td>{{vaccine.StartDate | date :"dd/MM/yy"}}</td>
+        <td><a [routerLink]="['/ReserchView', vaccine.Id]">View</a>&nbsp;&nbsp;
+            <a href="javascript:void(0);" (click)="DeleteReserch(vaccine.Id)">Delete</a>
+        </td>
     </tr>
+    <tr style="text-align:center" *ngIf="ReserchDepartments.length==0">
+        <td colspan="6">no recordes found</td>
+    </tr>
+    <br><br />
 </table>
+<br /><br />
+
+<form [formGroup]="ReserchForm" (ngSubmit)="onSubmit()" id="formReserch">
+    <div class=" row">
+        <div class="col-md-3">
+            <p>reserch-view works!</p>
+            <span>Id</span>
+            <input id="Id" type="text" formControlName="Id"><br /><br />
+            <span>Project</span>
+            <input id="Project" type="text" formControlName="Project"><br /><br />
+            <span>Place</span>
+            <input id="Place" type="text" formControlName="Place"><br /><br />
+            <span>Price</span>
+            <input id="Price" type="text" formControlName="Price"><br /><br />
+            <span>StartDate</span>
+            <input id="StartDate" type="text" formControlName="StartDate"><br /><br />
+        </div>
+
+    </div>
+    <button class="button" button="submit">Save</button>
+</form>
+
+
+
+
+<button class="button" (click)="ClearAll()">ClearAll</button>
