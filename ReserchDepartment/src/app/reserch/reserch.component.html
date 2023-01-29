@@ -13,7 +13,7 @@
 
     <tr *ngFor="let vaccine of ReserchDepartments">
         <td>{{vaccine.Id}}</td>
-        <td>{{vaccine.Project}}</td>
+        <td>{{vaccine.Project | uppercase}}</td>
         <td (click)="alertFunction(vaccine.Project)">{{vaccine.Place}}</td>
         <td><a *ngIf="vaccine.Id>1">{{vaccine.Price}}</a></td>
         <td>{{vaccine.StartDate | date :"dd/MM/yy"}}</td>

@@ -30,12 +30,21 @@ export class ReserchComponent implements OnInit {
     StartDate: ''
   });
   onSubmit() {
+    var reserch = {
+      Id: Number(this.ReserchDepartments.sort((a, b) => b.Id - a.Id)[0].Id + 1),
+      Project: '',
+      Place: '',
+      Price: 0,
+      StartDate: ''
+
+    }
+
     console.warn('Your order has been submitted', this.ReserchForm.value);
     this.ReserchForm.reset();
   }
 
   AddReserch(): void {
-    var formReserch = document.getElementById("AddReserch")
+    var formReserch = document.getElementById("formReserch")
     if (formReserch) {
       formReserch.style.display = "block";
     }
