@@ -15,10 +15,12 @@
         <td>{{vaccine.Id}}</td>
         <td>{{vaccine.Project | uppercase}}</td>
         <td (click)="alertFunction(vaccine.Project)">{{vaccine.Place}}</td>
-        <td><a *ngIf="vaccine.Id>1">{{vaccine.Price}}</a></td>
+        <td>{{vaccine.Price}}</td>
         <td>{{vaccine.StartDate | date :"dd/MM/yy"}}</td>
         <td><a [routerLink]="['/ReserchView', vaccine.Id]">View</a>&nbsp;&nbsp;
-            <a href="javascript:void(0);" (click)="DeleteReserch(vaccine.Id)">Delete</a>
+            <a href="javascript:void(0);" (click)="DeleteReserch(vaccine.Id)">Delete</a>&nbsp;&nbsp;
+            <a href="javasccript:void(0)" (click)="EditReserch(vaccine.Id)">Edit</a>&nbsp;&nbsp;
+            <a (click)="SelectReserch(vaccine.Id)">Select</a>
         </td>
     </tr>
     <tr style="text-align:center" *ngIf="ReserchDepartments.length==0">
@@ -46,6 +48,8 @@
 
     </div>
     <button class="button" button="submit">Save</button>
+    <button class="button" type="button" (click)="ClearReserch()">ResetAll</button>
+    <button class="button" type="button" (click)="CancelReserch()">Cancel</button>
 </form>
 
 

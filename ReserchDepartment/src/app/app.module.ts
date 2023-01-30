@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 import { ReserchComponent } from './reserch/reserch.component';
 import { ReserchAlertComponent } from './reserch-alert/reserch-alert.component';
 import { ReserchViewComponent } from './reserch-view/reserch-view.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,11 @@ import { ReserchViewComponent } from './reserch-view/reserch-view.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]

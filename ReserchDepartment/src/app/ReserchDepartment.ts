@@ -1,8 +1,8 @@
 export interface ReserchDepartment {
-    Id: Number;
+    Id: number;
     Project: string;
-    Place: String;
-    Price: Number;
+    Place: string;
+    Price: number;
     StartDate: Date;
 }
 export const ReserchDepartments = [
