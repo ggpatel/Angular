@@ -1,9 +1,9 @@
 export interface ProductManagement {
-    Id: Number;
-    Name: String;
-    Quntity: Number;
-    Price: Number;
-    Email: String;
+    Id: number;
+    Name: string;
+    Quntity: number;
+    Price: number;
+    Email: string;
     StartDate: Date;
 }
 

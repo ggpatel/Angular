@@ -14,7 +14,7 @@
     <tr *ngFor="let item of ProductManagements">
         <td>{{item.Id}}</td>
         <td>{{item.Name}}</td>
-        <td (click)="alertFunction(item.Name)">{{item.Quntity}}</td>
+        <td>{{item.Quntity}}</td>
         <td><label *ngIf="item.Id>1"></label> {{item.Price}}</td>
         <td>{{item.Email}}</td>
         <td>{{item.StartDate |date: "1/20/2023"}}</td>

@@ -1,6 +1,9 @@
 import { identifierName, isNgTemplate } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+import { ProductServiceService } from '../product-service.service';
 import { ProductManagementS, ProductManagement } from '../ProductManagement';
 
 @Component({
@@ -9,18 +12,20 @@ import { ProductManagementS, ProductManagement } from '../ProductManagement';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  ProductManagements = ProductManagementS;
-  alertFunction(Name: string) {
-    alert(name);
-  };
+  ProductManagements: ProductManagement[] = []
+
   constructor(
     private formBuilder: FormBuilder,
+    private ProductService: ProductServiceService
   ) { }
+
   ngOnInit(): void {
     var formProduct = document.getElementById("formProduct")
     if (formProduct) {
       formProduct.style.display = "none";
     };
+    this.ProductService.getProductManagement()
+      .subscribe(PMS => this.ProductManagements = PMS);
   };
   AddProduct() {
     var formProduct = document.getElementById("formProduct")
