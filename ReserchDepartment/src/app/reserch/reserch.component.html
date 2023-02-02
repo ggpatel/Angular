@@ -12,15 +12,15 @@
     </tr>
 
     <tr *ngFor="let vaccine of ReserchDepartments">
-        <td>{{vaccine.Id}}</td>
+        <td>{{vaccine.id}}</td>
         <td>{{vaccine.Project | uppercase}}</td>
         <td (click)="alertFunction(vaccine.Project)">{{vaccine.Place}}</td>
         <td>{{vaccine.Price}}</td>
         <td>{{vaccine.StartDate | date :"dd/MM/yy"}}</td>
-        <td><a [routerLink]="['/ReserchView', vaccine.Id]">View</a>&nbsp;&nbsp;
-            <a href="javascript:void(0);" (click)="DeleteReserch(vaccine.Id)">Delete</a>&nbsp;&nbsp;
-            <a href="javasccript:void(0)" (click)="EditReserch(vaccine.Id)">Edit</a>&nbsp;&nbsp;
-            <a (click)="SelectReserch(vaccine.Id)">Select</a>
+        <td><a [routerLink]="['/ReserchView', vaccine.id]">View</a>&nbsp;&nbsp;
+            <a (click)="DeleteReserch(vaccine.id)">Delete</a>&nbsp;&nbsp;
+            <a (click)="EditReserch(vaccine.id)">Edit</a>&nbsp;&nbsp;
+            <a (click)="SelectReserch(vaccine.id)">Select</a>
         </td>
     </tr>
     <tr style="text-align:center" *ngIf="ReserchDepartments.length==0">
@@ -35,7 +35,7 @@
         <div class="col-md-3">
             <p>reserch-view works!</p>
             <span>Id</span>
-            <input id="Id" type="text" formControlName="Id"><br /><br />
+            <input id="Id" type="text" formControlName="id"><br /><br />
             <span>Project</span>
             <input id="Project" type="text" formControlName="Project"><br /><br />
             <span>Place</span>

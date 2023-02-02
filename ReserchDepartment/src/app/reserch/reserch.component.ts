@@ -27,16 +27,16 @@ export class ReserchComponent implements OnInit {
       .subscribe(res => this.ReserchDepartments = res);
   }
   ReserchForm = this.formBuilder.group({
-    Id: 0,
+    id: 0,
     Project: '',
     Place: '',
     Price: 0,
     StartDate: ''
   });
   onSubmit() {
-    var id = Number(this.ReserchForm.value.Id);
+    var id = Number(this.ReserchForm.value.id);
     if (id > 0) {
-      var Reserch = this.ReserchDepartments.find(function (vaccine) { return vaccine.Id == id; });
+      var Reserch = this.ReserchDepartments.find(function (vaccine) { return vaccine.id == id; });
       if (Reserch) {
         Reserch.Project = this.ReserchForm.value.Project?.toString() ?? "",
           Reserch.Place = this.ReserchForm.value.Place?.toString() ?? "",
@@ -45,7 +45,7 @@ export class ReserchComponent implements OnInit {
       }
     } else {
       this.ReserchDepartments.push({
-        Id: Number(this.ReserchDepartments.sort((a, b) => b.Id - a.Id)[0].Id + 1),
+        id: Number(this.ReserchDepartments.sort((a, b) => b.id - a.id)[0].id + 1),
         Project: this.ReserchForm.value.Project?.toString() ?? "",
         Place: this.ReserchForm.value.Place?.toString() ?? "",
         Price: Number(this.ReserchForm.value.Price),
@@ -56,7 +56,7 @@ export class ReserchComponent implements OnInit {
     console.warn('Your order has been submitted', this.ReserchForm.value);
     this.ReserchForm.reset();
     this.CancelReserch();
-    this.ReserchDepartments.sort((a, b) => a.Id - b.Id);
+    this.ReserchDepartments.sort((a, b) => a.id - b.id);
   }
 
   AddReserch(): void {
@@ -65,15 +65,23 @@ export class ReserchComponent implements OnInit {
       formReserch.style.display = "block";
     }
   }
-  EditReserch(id: Number) {
-    var Reserch = ReserchDepartments.find(function (vaccine) { return vaccine.Id == id; });
+  EditReserch(id: number) {
+
+    this.Reserchservice.getResearch(id)
+      .subscribe(res => {
+        this.setReserchData(res);
+      });
+  };
+
+  setReserchData(Reserch: ReserchDepartment) {
+
     if (Reserch) {
       var formReserch = document.getElementById("formReserch")
       if (formReserch) {
         formReserch.style.display = "block";
       }
       this.ReserchForm = this.formBuilder.group({
-        Id: Number(Reserch?.Id) ?? 0,
+        id: Number(Reserch?.id) ?? 0,
         Project: Reserch?.Project?.toString() ?? "",
         Place: Reserch?.Place?.toString() ?? "",
         Price: Number(Reserch?.Price) ?? 0,
@@ -81,6 +89,7 @@ export class ReserchComponent implements OnInit {
       })
     }
   }
+
   CancelReserch() {
     var formReserch = document.getElementById("formReserch")
     if (formReserch) {
@@ -92,14 +101,15 @@ export class ReserchComponent implements OnInit {
     this.ReserchForm.reset();
   }
 
-  DeleteReserch(id: Number) {
+  DeleteReserch(id: number) {
     var confirmation = confirm("are you sure do you want to delete this reserchdepartment?")
     if (confirmation) {
-      this.ReserchDepartments = this.ReserchDepartments.filter(function (vaccine) { return vaccine.Id != id; });
+      this.ReserchDepartments = this.ReserchDepartments.filter(function (vaccine) { return vaccine.id != id; });
+      this.Reserchservice.deleteResearch(id).subscribe();
     }
   }
   SelectReserch(id: Number) {
-    this.ReserchDepartments = this.ReserchDepartments.filter(function (vaccine) { return vaccine.Id == id; })
+    this.ReserchDepartments = this.ReserchDepartments.filter(function (vaccine) { return vaccine.id == id; })
   }
   ClearAll() {
     var confirmation = confirm("are yoo sure do you want to delete all ?")

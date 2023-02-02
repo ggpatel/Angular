@@ -11,21 +11,21 @@ export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const ReserchDepartments = [
       {
-        Id: 1,
+        id: 1,
         Project: "Fizervaccine",
         Place: "USA",
         Price: 100000,
         StartDate: new Date("8/12/22")
       },
       {
-        Id: 2,
+        id: 2,
         Project: "covaccine",
         Place: "India",
         Price: 50000,
         StartDate: new Date("2/10/22")
       },
       {
-        Id: 3,
+        id: 3,
         Project: "MordenaVaccine",
         Place: "USA",
         Price: 150000,
@@ -35,6 +35,6 @@ export class InMemoryDataService implements InMemoryDbService {
     return { ReserchDepartments };
   }
   genId(ReserchDepartments: ReserchDepartment[]): number {
-    return ReserchDepartments.length > 0 ? Math.max(...ReserchDepartments.map(RD => RD.Id)) + 1 : 11;
+    return ReserchDepartments.length > 0 ? Math.max(...ReserchDepartments.map(RD => RD.id)) + 1 : 11;
   }
 }

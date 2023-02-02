@@ -14,21 +14,31 @@ export class ReserchServiceService {
     return this.http.get<ReserchDepartment[]>(this.ReserchUrl)
       .pipe(
         tap(_ => console.log('fetched ReserchDepartment')),
-        catchError(this.handleError<ReserchDepartment[]>('getReserchDeparmnet', [])),
+        catchError(this.handleError<ReserchDepartment[]>('getReserch', [])),
       );
   }
 
-  getHero(id: number): Observable<ReserchDepartment> {
+  getResearch(id: number): Observable<ReserchDepartment> {
     const url = `${this.ReserchUrl}/${id}`;
-    return this.http.get<ReserchDepartment>(url).pipe(
-      tap(_ => console.log(`fetched Reserch id=${id}`)),
-      catchError(this.handleError<ReserchDepartment>(`getReserch id=${id}`))
-    );
+    return this.http.get<ReserchDepartment>(url)
+      .pipe(
+        tap(_ => console.log(`fetched Reserch id=${id}`)),
+        catchError(this.handleError<ReserchDepartment>(`getReserchDepartment id=${id}`))
+      );
+  }
+
+  deleteResearch(id: number): Observable<ReserchDepartment> {
+    const url = `${this.ReserchUrl}/${id}`;
+    return this.http.delete<ReserchDepartment>(url)
+      .pipe(
+        tap(_ => console.log(`deleted Reserch id=${id}`)),
+        catchError(this.handleError<ReserchDepartment>(`deleteResearch id=${id}`))
+      );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(error); // log to console instead
+      console.log(error);
       return of(result as T);
     };
   }

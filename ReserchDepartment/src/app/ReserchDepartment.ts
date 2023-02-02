@@ -1,5 +1,5 @@
 export interface ReserchDepartment {
-    Id: number;
+    id: number;
     Project: string;
     Place: string;
     Price: number;

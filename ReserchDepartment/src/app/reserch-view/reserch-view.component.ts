@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
+import { Subscriber } from 'rxjs';
 import { ReserchDepartments, ReserchDepartment } from '../ReserchDepartment';
+import { ReserchServiceService } from '../reserch-service.service';
+
 
 @Component({
   selector: 'app-reserch-view',
@@ -12,14 +14,17 @@ export class ReserchViewComponent implements OnInit {
   Reserch: ReserchDepartment | undefined;
   Reserchs = ReserchDepartments;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,
+    private reserchService: ReserchServiceService) { }
 
   ngOnInit() {
-    // First get the product id from the current route.
     const routeParams = this.route.snapshot.paramMap;
-    const ReserchId = Number(routeParams.get('ReserchId'));
+    const reserchId = Number(routeParams.get('ReserchId'));
 
-    // Find the product that correspond with the id provided in route.
-    this.Reserch = this.Reserchs.find(Rd => Rd.Id === ReserchId);
+    this.reserchService.getResearch(reserchId)
+      .subscribe(res => {
+        this.Reserch = res;
+        console.log(res);
+      });
   };
 };
