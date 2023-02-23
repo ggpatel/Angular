@@ -24,33 +24,44 @@ export class ReserchComponent implements OnInit {
     }
 
     this.Reserchservice.getReseerchDepartmnet()
-      .subscribe(res => this.ReserchDepartments = res);
+      .subscribe(res => {
+        this.ReserchDepartments = res;
+        console.log(res);
+      });
   }
   ReserchForm = this.formBuilder.group({
     id: 0,
-    Project: '',
+    name: '',
     Place: '',
     Price: 0,
     StartDate: ''
   });
   onSubmit() {
     var id = Number(this.ReserchForm.value.id);
+
     if (id > 0) {
       var Reserch = this.ReserchDepartments.find(function (vaccine) { return vaccine.id == id; });
       if (Reserch) {
-        Reserch.Project = this.ReserchForm.value.Project?.toString() ?? "",
+        Reserch.name = this.ReserchForm.value.name?.toString() ?? "",
           Reserch.Place = this.ReserchForm.value.Place?.toString() ?? "",
           Reserch.Price = Number(this.ReserchForm.value.Price) ?? 0,
           Reserch.StartDate = new Date;
+
+        this.Reserchservice.updateReserch(Reserch).subscribe();
       }
     } else {
-      this.ReserchDepartments.push({
+      var ReserchDepartment = {
         id: Number(this.ReserchDepartments.sort((a, b) => b.id - a.id)[0].id + 1),
-        Project: this.ReserchForm.value.Project?.toString() ?? "",
+        name: this.ReserchForm.value.name?.toString() ?? "",
         Place: this.ReserchForm.value.Place?.toString() ?? "",
         Price: Number(this.ReserchForm.value.Price),
         StartDate: new Date()
-      })
+      }
+      this.Reserchservice.addResearch(ReserchDepartment)
+        .subscribe(Rd => {
+          this.ReserchDepartments.push(Rd);
+        });
+
     }
 
     console.warn('Your order has been submitted', this.ReserchForm.value);
@@ -82,7 +93,7 @@ export class ReserchComponent implements OnInit {
       }
       this.ReserchForm = this.formBuilder.group({
         id: Number(Reserch?.id) ?? 0,
-        Project: Reserch?.Project?.toString() ?? "",
+        name: Reserch?.name?.toString() ?? "",
         Place: Reserch?.Place?.toString() ?? "",
         Price: Number(Reserch?.Price) ?? 0,
         StartDate: Reserch?.StartDate?.toString() ?? "",
@@ -108,9 +119,21 @@ export class ReserchComponent implements OnInit {
       this.Reserchservice.deleteResearch(id).subscribe();
     }
   }
-  SelectReserch(id: Number) {
-    this.ReserchDepartments = this.ReserchDepartments.filter(function (vaccine) { return vaccine.id == id; })
+  SelectReserch(id: number) {
+    this.Reserchservice.getResearch(id)
+      .subscribe(res => {
+        this.ReserchDepartments = [];
+        this.ReserchDepartments.push(res);
+      });
   }
+
+  onSearch(search: string) {
+    this.Reserchservice.getResearchBysearch(search)
+      .subscribe(res => {
+        this.ReserchDepartments = res;
+      });
+  }
+
   ClearAll() {
     var confirmation = confirm("are yoo sure do you want to delete all ?")
     if (confirmation) {

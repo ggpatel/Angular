@@ -18,6 +18,14 @@ export class ReserchServiceService {
       );
   }
 
+  getResearchBysearch(search: string): Observable<ReserchDepartment[]> {
+    return this.http.get<ReserchDepartment[]>(`${this.ReserchUrl}/?name=${search}`)
+      .pipe(
+        tap(_ => console.log('fetched ReserchDepartment')),
+        catchError(this.handleError<ReserchDepartment[]>('getReserch', [])),
+      );
+  }
+
   getResearch(id: number): Observable<ReserchDepartment> {
     const url = `${this.ReserchUrl}/${id}`;
     return this.http.get<ReserchDepartment>(url)
@@ -34,6 +42,20 @@ export class ReserchServiceService {
         tap(_ => console.log(`deleted Reserch id=${id}`)),
         catchError(this.handleError<ReserchDepartment>(`deleteResearch id=${id}`))
       );
+  }
+
+  updateReserch(Reserch: ReserchDepartment): Observable<any> {
+    return this.http.put(this.ReserchUrl, Reserch).pipe(
+      tap(_ => console.log('updatedReserch')),
+      catchError(this.handleError<any>('updatedReserch'))
+    );
+  }
+
+  addResearch(Reserch: ReserchDepartment): Observable<ReserchDepartment> {
+    return this.http.post<ReserchDepartment>(this.ReserchUrl, Reserch).pipe(
+      tap(_ => console.log('updatedReserch')),
+      catchError(this.handleError<ReserchDepartment>('updatedReserch'))
+    );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

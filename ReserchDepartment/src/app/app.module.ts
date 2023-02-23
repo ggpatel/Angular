@@ -10,13 +10,15 @@ import { ReserchViewComponent } from './reserch-view/reserch-view.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
+import { MyStyleDirective } from './my-style.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     ReserchComponent,
     ReserchAlertComponent,
-    ReserchViewComponent
+    ReserchViewComponent,
+    MyStyleDirective
   ],
   imports: [
     BrowserModule,

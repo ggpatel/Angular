@@ -1,6 +1,14 @@
 <div class="container">
-  <router-outlet></router-outlet>
+  <div style="text-align:center;color: white;">
+    <label [ngStyle]="{backgroundColor:getColor()}">Internet Connection</label>&nbsp;&nbsp;&nbsp;
+    <label [ngClass]="{online:onlineStatus==true}">Online Connection</label>
+  </div>
+  <div style="text-align: center;">
+    <p appMyStyle>Style me with MyStyleDirective</p>
+
+  </div>
   <a [routerLink]="['/Reserch']">Reserch</a>
   <a [routerLink]="['/ReserchAlert']" style="margin-left:10px;">ReserchAlert</a>
+  <router-outlet></router-outlet>
 
 </div>

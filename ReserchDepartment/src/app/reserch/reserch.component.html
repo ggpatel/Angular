@@ -1,10 +1,17 @@
-<p>reserch works!</p>
-<a href="javascript:void(0);" (click)="AddReserch()">AddReserch</a>
-
+<h1>Reserch works!</h1>
+<button (click)="AddReserch()" class="btn btn-primary pull-right">AddReserch</button>
+<br />
+<br />
+<input #search type="text" class="form-control" /><button value="Search" (click)="onSearch(search.value)"
+    class="btn btn-primary pull-right">
+    Search Name</button>
+<br />
+<input #searchName type="text" (input)="onSearch(searchName.value)" placeholder="Search Name" class="form-control" />
+<br />
 <table>
     <tr>
         <th>Id</th>
-        <th>Project</th>
+        <th>Name</th>
         <th>Place</th>
         <th>Price</th>
         <th>Date</th>
@@ -13,8 +20,8 @@
 
     <tr *ngFor="let vaccine of ReserchDepartments">
         <td>{{vaccine.id}}</td>
-        <td>{{vaccine.Project | uppercase}}</td>
-        <td (click)="alertFunction(vaccine.Project)">{{vaccine.Place}}</td>
+        <td>{{vaccine.name | uppercase}}</td>
+        <td (click)="alertFunction(vaccine.name)">{{vaccine.Place}}</td>
         <td>{{vaccine.Price}}</td>
         <td>{{vaccine.StartDate | date :"dd/MM/yy"}}</td>
         <td><a [routerLink]="['/ReserchView', vaccine.id]">View</a>&nbsp;&nbsp;
@@ -26,33 +33,53 @@
     <tr style="text-align:center" *ngIf="ReserchDepartments.length==0">
         <td colspan="6">no recordes found</td>
     </tr>
-    <br><br />
 </table>
+
 <br /><br />
 
 <form [formGroup]="ReserchForm" (ngSubmit)="onSubmit()" id="formReserch">
     <div class=" row">
-        <div class="col-md-3">
-            <p>reserch-view works!</p>
-            <span>Id</span>
-            <input id="Id" type="text" formControlName="id"><br /><br />
-            <span>Project</span>
-            <input id="Project" type="text" formControlName="Project"><br /><br />
-            <span>Place</span>
-            <input id="Place" type="text" formControlName="Place"><br /><br />
-            <span>Price</span>
-            <input id="Price" type="text" formControlName="Price"><br /><br />
-            <span>StartDate</span>
-            <input id="StartDate" type="text" formControlName="StartDate"><br /><br />
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Id</label>
+                <input id="Id" type="text" formControlName="id" class="form-control" />
+            </div>
         </div>
 
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Name</label>
+                <input id="name" type="text" formControlName="name" class="form-control" />
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Place</label>
+                <input id="Place" type="text" formControlName="Place" class="form-control" />
+            </div>
+        </div>
     </div>
-    <button class="button" button="submit">Save</button>
-    <button class="button" type="button" (click)="ClearReserch()">ResetAll</button>
-    <button class="button" type="button" (click)="CancelReserch()">Cancel</button>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Price</label>
+                <input id="Price" type="text" formControlName="Price" class="form-control" />
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>StartDate</label>
+                <input id="StartDate" type="text" formControlName="StartDate" class="form-control" />
+            </div>
+        </div>
+    </div>
+
+
+
+    <button class="button" button="submit" class="btn btn-success">Save</button>&nbsp;&nbsp;
+    <button class="button" type="button" (click)="ClearReserch()" class="btn btn-default">ResetAll</button>&nbsp;&nbsp;
+    <button class="button" type="button" (click)="CancelReserch()" class="btn btn-danger">Cancel</button>
+    <button class="button" (click)="ClearAll()" class="btn btn-danger pull-right">ClearAll</button>
 </form>
-
-
-
-
-<button class="button" (click)="ClearAll()">ClearAll</button>
