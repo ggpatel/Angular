@@ -39,7 +39,7 @@
 
 <form [formGroup]="ReserchForm" (ngSubmit)="onSubmit()" id="formReserch">
     <div class=" row">
-        <div class="col-md-2">
+        <div class="col-md-2 col-md-offset-3">
             <div class="form-group">
                 <label>Id</label>
                 <input id="Id" type="text" formControlName="id" class="form-control" />
@@ -61,7 +61,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 col-md-offset-3">
             <div class="form-group">
                 <label>Price</label>
                 <input id="Price" type="text" formControlName="Price" class="form-control" />
@@ -77,9 +77,16 @@
     </div>
 
 
+    <div class="row">
+        <div class="col-md-3 col-md-offset-3">
+            <button class="button" type="submit" class="btn btn-success ">Save</button>&nbsp;&nbsp;
+            <button class="button" type="button" (click)="ClearReserch()"
+                class="btn btn-default">ResetAll</button>&nbsp;&nbsp;
+            <button class="button" type="button" (click)="CancelReserch()" class="btn btn-danger">Cancel</button>
+        </div>
+        <div class="col-md-3">
+            <button class="button" (click)="ClearAll()" class="btn btn-danger pull-right">ClearAll</button>
+        </div>
+    </div>
 
-    <button class="button" button="submit" class="btn btn-success">Save</button>&nbsp;&nbsp;
-    <button class="button" type="button" (click)="ClearReserch()" class="btn btn-default">ResetAll</button>&nbsp;&nbsp;
-    <button class="button" type="button" (click)="CancelReserch()" class="btn btn-danger">Cancel</button>
-    <button class="button" (click)="ClearAll()" class="btn btn-danger pull-right">ClearAll</button>
 </form>
