@@ -2,11 +2,14 @@
 <button (click)="AddReserch()" class="btn btn-primary pull-right">AddReserch</button>
 <br />
 <br />
-<input #search type="text" class="form-control" /><button value="Search" (click)="onSearch(search.value)"
-    class="btn btn-primary pull-right">
-    Search Name</button>
+<input #searchName type="text" class="form-control" placeholder="Search Name" style="width:25%" />
+
 <br />
-<input #searchName type="text" (input)="onSearch(searchName.value)" placeholder="Search Name" class="form-control" />
+<div>
+    <input type="text" class="form-control; input-group-text" placeholder="Search Name" aria-label="Recipieants Name"
+        aria-describedby="basic-addon2" style="width:21%" /><span id="basic-addon2"
+        style="background-color: lightblue; border: 1px solid black; padding: 4px;">Search</span>
+</div>
 <br />
 <table>
     <tr>
