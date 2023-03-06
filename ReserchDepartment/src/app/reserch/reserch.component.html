@@ -1,15 +1,15 @@
 <h1>Reserch works!</h1>
-<button (click)="AddReserch()" class="btn btn-primary pull-right">AddReserch</button>
+<button (click)="AddReserch()" class="btn btn-primary" style="float: right;">AddReserch</button>
 <br />
-<br />
-<input #searchName type="text" class="form-control" placeholder="Search Name" style="width:25%" />
-
 <br />
 <div>
-    <input type="text" class="form-control; input-group-text" placeholder="Search Name" aria-label="Recipieants Name"
-        aria-describedby="basic-addon2" style="width:21%" /><span id="basic-addon2"
-        style="background-color: lightblue; border: 1px solid black; padding: 4px;">Search</span>
+    <button class="btn btn-primary" style=float:right>Search</button>
+    <input type="text" class="form-control input-group-text pull-right" placeholder="Search Name"
+        style="width:21%; float: right;" />
+
 </div>
+<br />
+<br />
 <br />
 <table>
     <tr>
@@ -42,7 +42,7 @@
 
 <form [formGroup]="ReserchForm" (ngSubmit)="onSubmit()" id="formReserch">
     <div class=" row">
-        <div class="col-md-2 col-md-offset-3">
+        <div class="col-md-2 offset-md-3">
             <div class="form-group">
                 <label>Id</label>
                 <input id="Id" type="text" formControlName="id" class="form-control" />
@@ -64,7 +64,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3 col-md-offset-3">
+        <div class="col-md-3 offset-md-3">
             <div class="form-group">
                 <label>Price</label>
                 <input id="Price" type="text" formControlName="Price" class="form-control" />
@@ -74,14 +74,14 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label>StartDate</label>
-                <input id="StartDate" type="text" formControlName="StartDate" class="form-control" />
+                <input id="StartDate" type="text" formControlName="StartDate" class="form-control" bsDatepicker />
             </div>
         </div>
     </div>
 
 
     <div class="row">
-        <div class="col-md-3 col-md-offset-3">
+        <div class="col-md-3 offset-md-3">
             <button class="button" type="submit" class="btn btn-success ">Save</button>&nbsp;&nbsp;
             <button class="button" type="button" (click)="ClearReserch()"
                 class="btn btn-default">ResetAll</button>&nbsp;&nbsp;
